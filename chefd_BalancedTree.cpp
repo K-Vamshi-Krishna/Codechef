@@ -112,7 +112,7 @@ void update_1(int l,int r, int p)
 	vector<int> vec;
 	for(itr=ss[p].lower_bound(l); *itr <=r && itr!=ss[p].end();itr++){
 		ar[*itr]/=p;
-		if(ar[*itr]%p==0){vec.push_back(*itr);}
+		if(ar[*itr]%p!=0){vec.push_back(*itr);}
 	}
 	for(int i=0;i<vec.size();i++){
 	ss[p].erase(vec[i]);
@@ -144,15 +144,17 @@ int main()
 	for(int i=0; i<m; i++)
 	{
 		int q,l,r,p,d;
-		scanf("%d",q);
+		scanf("%d",&q);
 		if(q==1){
 		scanf("%d %d %d",&l,&r,&p);
 		update_1(l-1,r-1,p);
 		}
 		else{
 		scanf("%d %d",&l,&d);
-		update_2(l,d);
+		update_2(l-1,d);
 		
 		}
 	}
+	for( int i=0; i<n-1;i++)
+		printf("%d ",ar[i]); printf("%d",ar[n-1]);
 }
